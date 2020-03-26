@@ -2,19 +2,17 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
+require './app'
 
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
+every 2.hours do
+  get_total_covid_stats
+  get_country_covid_stats
+end
 
-# Learn more: http://github.com/javan/whenever
+every 5.minutes do
+  get_global_news
+end
+
+every 30.minute do
+  p 'get news'
+end

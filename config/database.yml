@@ -1,21 +1,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: db-name
+  database: development-covid
   pool: 5
   username:
   password:
   timeout: 5000
 
-
 development:
   <<: *default
-  database: development-db-name
+  database: development-covid-v1
 
 test:
   <<: *default
-  database: test-db-name
+  database: test-covid-v1
 
 production:
   <<: *default
-  database: production-db-name
+  database: production-covid-v1
