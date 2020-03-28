@@ -10,11 +10,9 @@ require './models/total'
 require './models/country'
 require './models/news'
 
-
-
 get '/' do
   content_type :json
-  @data = { total: Total.last }.to_json
+  @data = { total: Total.last, news: News.last}.to_json
   @data.delete! '\\'
   @data
 end
@@ -24,7 +22,10 @@ def get_total_covid_stats
   response = Net::HTTP.get_response('coronavirus-19-api.herokuapp.com', '/all')
   if response.code == '200'
     @total = Total.new
+    p 'total here'
+    p @total
     @total.data = response.body
+    p @total.data
     @total.save
   end
 end
@@ -39,8 +40,13 @@ def get_country_covid_stats
 end
 
 def get_global_news
-  # http://newsapi.org/v2/everything?q=bitcoin&from=2020-02-25&sortBy=publishedAt&apiKey=API_KEY
-  p 'add api key'
+  uri = URI("http://newsapi.org/v2/top-headlines?q=covid&language=en&apiKey=e6a54260a8e0419ebbfddaa48b5c5a1c")
+  response = Net::HTTP.get_response(uri)
+  if response.code == '200'
+    @news = News.new
+    @news.data = response.body
+    @news.save
+  end
 end
 
 get '/generate' do
