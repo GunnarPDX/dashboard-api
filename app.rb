@@ -4,15 +4,14 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments'
 
-require './models/model'
-
 require './models/total'
 require './models/country'
 require './models/news'
+require './models/asset'
 
 get '/' do
   content_type :json
-  @data = { total: Total.last, news: News.last}.to_json
+  @data = { total: Total.last, news: News.last }.to_json
   @data.delete! '\\'
   @data
 end
@@ -49,8 +48,19 @@ def get_global_news
   end
 end
 
+def get_asset_data
+  p 'nothing here yet'
+
+  # if response.code == '200'
+  #   @asset = Asset.new
+  #   @asset.data = response.body
+  #   @asset.save
+  # end
+end
+
 get '/generate' do
   get_total_covid_stats
   get_country_covid_stats
   get_global_news
+  get_asset_data
 end

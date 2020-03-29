@@ -9,10 +9,10 @@ every 2.hours do
   get_country_covid_stats
 end
 
-every 5.minutes do
+every 10.minute do
   get_global_news
 end
 
-every 30.minute do
-  p 'get news'
+every 5.minutes do
+  get_asset_data
 end
