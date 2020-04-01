@@ -11,7 +11,7 @@ require './models/asset'
 
 get '/' do
   content_type :json
-  @data = { total: Total.last, news: News.last }.to_json
+  @data = { assets: Asset.last }.to_json # total: Total.last, news: News.last, assets: Asset.last
   @data.delete! '\\'
   @data
 end
@@ -49,14 +49,17 @@ def get_global_news
 end
 
 def get_asset_data
-  p 'nothing here yet'
-
-  # if response.code == '200'
-  #   @asset = Asset.new
-  #   @asset.data = response.body
-  #   @asset.save
-  # end
+  get_spy_1y_data
 end
+
+def get_spy_1y_data
+  p 'nothing here yet'
+  # For now we are just doing 1y data so save the info to -> asset.spy1y
+  @asset = Asset.new
+  @asset.spy1y = "add the response body on success"
+  @asset.save
+end
+
 
 get '/generate' do
   get_total_covid_stats
