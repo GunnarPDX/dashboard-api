@@ -5,3 +5,4 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem "pg"
 gem 'whenever'
+gem 'rake'
