@@ -32,9 +32,9 @@ end
 def get_country_covid_stats
   response = Net::HTTP.get_response('coronavirus-19-api.herokuapp.com', '/countries')
   if response.code == '200'
-    @contry = Country.new
-    @contry.data = response.body
-    @contry.save
+    @country = Country.new
+    @country.data = response.body
+    @country.save
   end
 end
 
@@ -49,20 +49,28 @@ def get_global_news
 end
 
 def get_asset_data
-  get_spy_1y_data
+  @asset = Asset.new
+  get_spy_1y_data(@asset)
+  get_btc_1m(@asset)
+  @asset.save
 end
 
-def get_spy_1y_data
+
+def get_spy_1y_data(asset)
   uri = URI("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=EZIRZ2T7WKWHB3P0")
   response = Net::HTTP.get_response(uri)
   if response.code == '200'
-  # For now we are just doing 1y data so save the info to -> asset.spy1y
-    @asset = Asset.new
     @asset.spy1y = response.body
-    @asset.save
   end
 end
 
+def get_btc_1m(asset)
+  uri = URI("https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol=BTC&market=CNY&apikey=EZIRZ2T7WKWHB3P0")
+  response = Net::HTTP.get_response(uri)
+  if response.code == '200'
+    @asset.btc1m = response.body
+  end
+end
 
 get '/generate' do
   get_total_covid_stats
