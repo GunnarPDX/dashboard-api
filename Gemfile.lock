@@ -23,6 +23,7 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
+    rake (13.0.1)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -46,9 +47,10 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   pg
+  rake
   sinatra
   sinatra-activerecord
   whenever
 
 BUNDLED WITH
-   2.0.2
+   2.1.2
