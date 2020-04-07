@@ -3,8 +3,6 @@ default: &default
   encoding: unicode
   database: development-covid
   pool: 5
-  username:
-  password:
   timeout: 5000
 
 development:
