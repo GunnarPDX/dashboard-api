@@ -11,8 +11,7 @@ require './models/asset'
 
 
 get '/' do
-  "hello"
-=begin
+
   content_type :json
   @data = {
     stats: Total.last,
@@ -23,7 +22,7 @@ get '/' do
 
   @data.delete! '\\'
   @data
-=end
+
 end
 
 
