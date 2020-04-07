@@ -79,7 +79,7 @@ def get_btc_1m(asset)
   end
 end
 
-__END__
+# __END__
 
 get '/generate' do
   get_total_covid_stats
