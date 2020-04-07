@@ -11,7 +11,13 @@ require './models/asset'
 
 get '/' do
   content_type :json
-  @data = { assets: Asset.last }.to_json # total: Total.last, news: News.last, assets: Asset.last
+  @data = {
+    stats: Total.last,
+    news: News.last,
+    assets: Asset.last,
+    countries: Country.last
+  }.to_json
+
   @data.delete! '\\'
   @data
 end
@@ -73,9 +79,13 @@ def get_btc_1m(asset)
   end
 end
 
+__END__
+
 get '/generate' do
   get_total_covid_stats
   get_country_covid_stats
   get_global_news
   get_asset_data
 end
+
+
