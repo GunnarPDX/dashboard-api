@@ -50,18 +50,18 @@ end
 
 def get_asset_data
   @asset = Asset.new
-  get_spy_1y_data(@asset)
+  get_spy_1m_data(@asset)
   get_btc_1m(@asset)
   @asset.save
 end
 
 
-def get_spy_1y_data(asset)
+def get_spy_1m_data(asset)
   uri = URI("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=EZIRZ2T7WKWHB3P0")
   response = Net::HTTP.get_response(uri)
   if response.code == '200'
     @asset = Asset.new
-    @asset.spy1y = response.body
+    @asset.spy1m = response.body
   end
 end
 
