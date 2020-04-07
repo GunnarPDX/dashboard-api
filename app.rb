@@ -20,7 +20,7 @@ get '/' do
     countries: Country.last
   }.to_json
 
-  @data.delete! '\\'
+  # @data.delete! '\\'
   @data
 
 end
