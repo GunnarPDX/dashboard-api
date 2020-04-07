@@ -56,7 +56,6 @@ def get_spy_1y_data
   uri = URI("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=SPY&apikey=EZIRZ2T7WKWHB3P0")
   response = Net::HTTP.get_response(uri)
   if response.code == '200'
-  # For now we are just doing 1y data so save the info to -> asset.spy1y
     @asset = Asset.new
     @asset.spy1y = response.body
     @asset.save
