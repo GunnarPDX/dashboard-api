@@ -12,18 +12,7 @@ require './models/asset'
 class App < Sinatra::Base
   get '/' do
     'hello'
-=begin
-    content_type :json
-    @data = {
-      stats: Total.last,
-      news: News.last,
-      assets: Asset.last,
-      countries: Country.last
-    }.to_json
 
-    @data.delete! '\\'
-    @data
-=end
   end
 
 
