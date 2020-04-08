@@ -8,6 +8,7 @@ require './models/total'
 require './models/country'
 require './models/news'
 require './models/asset'
+require './models/timeline'
 
 
 get '/' do
@@ -17,7 +18,8 @@ get '/' do
     stats: Total.last,
     news: News.last,
     assets: Asset.last,
-    countries: Country.last
+    countries: Country.last,
+    timeline: Timeline.last
   }.to_json
 
   # @data.delete! '\\'
@@ -81,6 +83,17 @@ def get_btc_1m(asset)
   end
 end
 
+def get_time_series_data
+  uri = URI('https://pomber.github.io/covid19/timeseries.json')
+  response = Net::HTTP.get_response(uri)
+  data = JSON.parse(response.body)
+  if response.code == '200'
+    @timeseries = Timeline.last || Timeline.new
+    @timeseries.data = data['US'] # response.body
+    @timeseries.save
+  end
+end
+
 # __END__
 
 get '/generate' do
@@ -88,6 +101,7 @@ get '/generate' do
   get_country_covid_stats
   get_global_news
   get_asset_data
+  get_time_series_data
 end
 
 
