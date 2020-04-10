@@ -58,10 +58,7 @@ def get_total_covid_stats
   response = Net::HTTP.get_response('coronavirus-19-api.herokuapp.com', '/all')
   if response.code == '200'
     @total = Total.last || Total.new
-    p 'total here'
-    p @total
     @total.data = response.body
-    p @total.data
     @total.save
   end
 end
@@ -112,10 +109,10 @@ end
 def get_time_series_data
   uri = URI('https://pomber.github.io/covid19/timeseries.json')
   response = Net::HTTP.get_response(uri)
-  data = JSON.parse(response.body)
+  # data = JSON.parse(response.body)
   if response.code == '200'
     @timeseries = Timeline.last || Timeline.new
-    @timeseries.data = data['US'] # response.body
+    @timeseries.data = response.body
     @timeseries.save
   end
 end
