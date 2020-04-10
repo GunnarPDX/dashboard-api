@@ -112,7 +112,7 @@ def get_time_series_data
   data = JSON.parse(response.body)
   if response.code == '200'
     @timeseries = Timeline.last || Timeline.new
-    @timeseries.data = data['US'] # response.body
+    @timeseries.data = data['US'].to_json # response.body
     @timeseries.save
   end
 end
