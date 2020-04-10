@@ -109,10 +109,10 @@ end
 def get_time_series_data
   uri = URI('https://pomber.github.io/covid19/timeseries.json')
   response = Net::HTTP.get_response(uri)
-  # data = JSON.parse(response.body)
+  data = JSON.parse(response.body)
   if response.code == '200'
     @timeseries = Timeline.last || Timeline.new
-    @timeseries.data = response.body
+    @timeseries.data = data['US'] # response.body
     @timeseries.save
   end
 end
