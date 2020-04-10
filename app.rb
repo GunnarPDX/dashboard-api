@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/cross_origin'
 require './config/environments'
 
 require './models/total'
@@ -26,6 +27,31 @@ get '/' do
   @data
 
 end
+
+
+set :bind, '0.0.0.0'
+
+configure do
+  enable :cross_origin
+end
+
+before do
+  response.headers['Access-Control-Allow-Origin'] = '*'
+
+  # response.headers['Access-Control-Allow-Origin'] = 'http://example.com'
+end
+
+# routes...
+options "*" do
+  response.headers["Allow"] = "GET"
+  response.headers["Access-Control-Allow-Origin"] = "*"
+  200
+end
+
+
+
+
+
 
 
 def get_total_covid_stats
