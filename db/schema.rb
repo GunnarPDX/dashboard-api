@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_042207) do
+ActiveRecord::Schema.define(version: 2020_04_07_234324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,8 @@ ActiveRecord::Schema.define(version: 2020_04_01_042207) do
     t.string "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "spy1w"
     t.string "spy1m"
-    t.string "spy1y"
-    t.string "btc1w"
     t.string "btc1m"
-    t.string "btc1y"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -38,6 +34,12 @@ ActiveRecord::Schema.define(version: 2020_04_01_042207) do
   end
 
   create_table "news", force: :cascade do |t|
+    t.string "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "timelines", force: :cascade do |t|
     t.string "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
