@@ -1,5 +1,5 @@
 ## Setup
-#### For docker add: 'docker-compose' before commands below
+#### TODO: For docker add: 'docker-compose' commands before the commands below
 * cd dashboard-api
 * bundle install
 * rake db:create
