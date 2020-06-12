@@ -16,7 +16,7 @@ This API has one route, the root which returns aggregated data from the 3rd part
 
 root route: /
 
-| stats     |                     |                                        |                          |                     |       |
+| **stats**     |                     |                                        |                          |                     |       |
 |-----------|---------------------|----------------------------------------|--------------------------|---------------------|-------|
 |           | cases               | int                                    |                          |                     |       |
 |           | deaths              | int                                    |                          |                     |       |
